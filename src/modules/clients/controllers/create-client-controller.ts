@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateClientUseCase } from "./create-client-use-case";
+import { CreateClientUseCase } from "../use-cases/create-client-use-case";
 
 export class CreateClientController {
   async handle(request: Request, response: Response) {
