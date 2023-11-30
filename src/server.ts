@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
-import { routes } from "./routes";
+import { routes } from "./modules/deliveryman/controllers/routes";
 
 const app = express();
 
@@ -23,4 +23,10 @@ app.use(
   }
 );
 
-app.listen(3000, () => console.log("🚀 HTTP Server is running!"));
+app.listen(
+  {
+    host: "0.0.0.0",
+    port: 3000,
+  },
+  () => console.log("🚀 HTTP Server is running!")
+);

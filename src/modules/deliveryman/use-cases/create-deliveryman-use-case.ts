@@ -1,35 +1,38 @@
+import { Deliveryman } from "@prisma/client";
 import { hash } from "bcrypt";
-import { prisma } from "../../../prisma/prisma";
+import { DeliverymanRepository } from "../repositories/deliveryman-repository";
 
 interface CreateDeliverymanUseCaseRequest {
   username: string;
   password: string;
 }
 
+interface CreateDeliverymanUseCaseResponse {
+  client: Deliveryman;
+}
+
 export class CreateDeliverymanUseCase {
-  async execute({ username, password }: CreateDeliverymanUseCaseRequest) {
-    const deliverymanExist = await prisma.deliveryman.findFirst({
-      where: {
-        username: {
-          equals: username,
-          mode: "insensitive",
-        },
-      },
-    });
+  constructor(private deliverymanRepository: DeliverymanRepository) {}
+
+  async execute({
+    username,
+    password,
+  }: CreateDeliverymanUseCaseRequest): Promise<CreateDeliverymanUseCaseResponse> {
+    const deliverymanExist = await this.deliverymanRepository.findByUsername(
+      username
+    );
 
     if (deliverymanExist) {
-      throw new Error("Client already exists.");
+      throw new Error("Client already exists."); // Criar erros customizados
     }
 
     const hashPassword = await hash(password, 10);
 
-    const client = await prisma.deliveryman.create({
-      data: {
-        username,
-        password: hashPassword,
-      },
+    const client = await this.deliverymanRepository.create({
+      username,
+      password: hashPassword,
     });
 
-    return client;
+    return { client };
   }
 }
