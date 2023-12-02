@@ -1,3 +1,4 @@
+import { Router } from "express";
 import { ensureAuthenticateClient } from "../../../middlewares/ensure-authenticate-client";
 import { ensureAuthenticateDeliveryman } from "../../../middlewares/ensure-authenticate-deliveryman";
 import { CreateDeliveryController } from "./create-delivery-controller";
@@ -10,6 +11,8 @@ const findAllAvailableController = new FindAllAvailableController();
 const updateDeliveryController = new UpdateDeliveryController();
 
 const updateEndDateController = new UpdateEndDateController();
+
+const routes = Router();
 
 routes.post(
   "/delivery",

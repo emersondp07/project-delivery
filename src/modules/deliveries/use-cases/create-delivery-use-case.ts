@@ -1,19 +1,23 @@
-import { prisma } from "../../../prisma/prisma";
+import { Delivery } from "@prisma/client";
+import { DeliveriesRepository } from "../repositories/deliveries-repository";
 
 interface CreateDeliveryUseCaseRequest {
   itemName: string;
   idClient: string;
 }
 
-export class CreateDeliveryUseCase {
-  async execute({ itemName, idClient }: CreateDeliveryUseCaseRequest) {
-    const delivery = await prisma.delivery.create({
-      data: {
-        item_name: itemName,
-        id_client: idClient,
-      },
-    });
+interface CreateDeliveryUseCaseResponse {
+  delivery: Delivery;
+}
 
-    return delivery;
+export class CreateDeliveryUseCase {
+  constructor(private deliveriesRepository: DeliveriesRepository) {}
+  async execute({
+    itemName,
+    idClient,
+  }: CreateDeliveryUseCaseRequest): Promise<CreateDeliveryUseCaseResponse> {
+    const delivery = await this.deliveriesRepository.create(itemName, idClient);
+
+    return { delivery };
   }
 }
