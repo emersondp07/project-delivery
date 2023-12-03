@@ -12,6 +12,7 @@ interface CreateDeliveryUseCaseResponse {
 
 export class CreateDeliveryUseCase {
   constructor(private deliveriesRepository: DeliveriesRepository) {}
+
   async execute({
     itemName,
     idClient,
