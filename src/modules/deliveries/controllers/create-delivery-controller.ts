@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { CreateDeliveryUseCase } from "../use-cases/create-delivery-use-case";
+import { makeCreateDeliveryUseCase } from "../factories/make-create-delivery-use-case";
 
 export class CreateDeliveryController {
   async handle(request: Request, response: Response) {
     const { itemName } = request.body;
 
-    const createDeliveryUseCase = new CreateDeliveryUseCase();
+    const createDeliveryUseCase = makeCreateDeliveryUseCase();
 
     const { idClient } = request;
 

@@ -1,19 +1,24 @@
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
-import { prisma } from "../../../prisma/prisma";
+import { ClientRepository } from "../repositories/client-repository";
 
 interface AuthenticateClientUseCaseRequest {
   username: string;
   password: string;
 }
 
+interface AuthenticateClientUseCaseResponse {
+  token: string;
+}
+
 export class AuthenticateClientUseCase {
-  async execute({ username, password }: AuthenticateClientUseCaseRequest) {
-    const client = await prisma.client.findFirst({
-      where: {
-        username,
-      },
-    });
+  constructor(private clientRepository: ClientRepository) {}
+
+  async execute({
+    username,
+    password,
+  }: AuthenticateClientUseCaseRequest): Promise<AuthenticateClientUseCaseResponse> {
+    const client = await this.clientRepository.findByUsername(username);
 
     if (!client) {
       throw new Error("Username or password incorrect.");
@@ -30,6 +35,6 @@ export class AuthenticateClientUseCase {
       expiresIn: "1d",
     });
 
-    return token;
+    return { token };
   }
 }

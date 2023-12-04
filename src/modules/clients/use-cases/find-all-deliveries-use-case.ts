@@ -1,17 +1,9 @@
-import { prisma } from "../../../prisma/prisma";
+import { ClientRepository } from "../repositories/client-repository";
 
 export class FindAllDeliveriesUseCase {
+  constructor(private clientRepository: ClientRepository) {}
   async execute(idClient: string) {
-    const deliveries = await prisma.client.findMany({
-      where: {
-        id: idClient,
-      },
-      select: {
-        id: true,
-        username: true,
-        deliveries: true,
-      },
-    });
+    const deliveries = await this.clientRepository.findMany(idClient);
 
     return deliveries;
   }

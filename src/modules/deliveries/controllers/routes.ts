@@ -12,27 +12,29 @@ const updateDeliveryController = new UpdateDeliveryController();
 
 const updateEndDateController = new UpdateEndDateController();
 
-const routes = Router();
+const routesDelivery = Router();
 
-routes.post(
+routesDelivery.post(
   "/delivery",
   ensureAuthenticateClient,
   createDeliveryController.handle
 );
-routes.get(
+routesDelivery.get(
   "/delivery/available",
   ensureAuthenticateDeliveryman,
   findAllAvailableController.handle
 );
 
-routes.patch(
+routesDelivery.patch(
   "/delivery/update-deliveryman/:id",
   ensureAuthenticateDeliveryman,
   updateDeliveryController.handle
 );
 
-routes.patch(
+routesDelivery.patch(
   "/delivery/update-end-date/:id",
   ensureAuthenticateDeliveryman,
   updateEndDateController.handle
 );
+
+export { routesDelivery };

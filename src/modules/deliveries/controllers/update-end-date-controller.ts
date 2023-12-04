@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { UpdateEndDateUseCase } from "../use-cases/update-end-date-use-case";
+import { makeUpdateEndDateUseCase } from "../factories/make-update-end-date-use-case";
 
 export class UpdateEndDateController {
   async handle(request: Request, response: Response) {
-    const updateEndDateUseCase = new UpdateEndDateUseCase();
+    const updateEndDateUseCase = makeUpdateEndDateUseCase();
 
     const { idDeliveryman } = request;
 

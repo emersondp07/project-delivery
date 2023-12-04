@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { FindAllAvailableUseCase } from "../use-cases/find-all-available-use-case";
+import { makeFindAllAvailableUseCase } from "../factories/make-find-all-available-use-case";
 
 export class FindAllAvailableController {
   async handle(request: Request, response: Response) {
-    const findAllAvailableUseCase = new FindAllAvailableUseCase();
+    const findAllAvailableUseCase = makeFindAllAvailableUseCase();
 
     const delivery = await findAllAvailableUseCase.execute();
 

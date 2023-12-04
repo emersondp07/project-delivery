@@ -31,7 +31,7 @@ export class PrismaDeliverymanRepository implements DeliverymanRepository {
     return deliveries;
   }
 
-  async create(data: Prisma.DeliverymanCreateInput) {
+  async createDeliveveryman(data: Prisma.DeliverymanCreateInput) {
     const client = await prisma.deliveryman.create({
       data,
     });

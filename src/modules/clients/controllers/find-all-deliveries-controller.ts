@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { FindAllDeliveriesUseCase } from "../use-cases/find-all-deliveries-use-case";
+import { makeFindAllDeliveriesDeliverymanUseCase } from "../factories/make-find-all-deliveries-use-case";
 
 export class FindAllDeliveriesController {
   async handle(request: Request, response: Response) {
-    const findAllDeliveriesUseCase = new FindAllDeliveriesUseCase();
+    const findAllDeliveriesUseCase = makeFindAllDeliveriesDeliverymanUseCase();
 
     const { idClient } = request;
 

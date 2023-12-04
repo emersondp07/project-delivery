@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { UpdateDeliveryUseCase } from "../use-cases/update-deliveryman-use-case";
+import { makeUpdateDeliverymanUseCase } from "../factories/make-update-deliveryman-use-case";
 
 export class UpdateDeliveryController {
   async handle(request: Request, response: Response) {
-    const updateDeliveryUseCase = new UpdateDeliveryUseCase();
+    const updateDeliveryUseCase = makeUpdateDeliverymanUseCase();
 
     const { idDeliveryman } = request;
 

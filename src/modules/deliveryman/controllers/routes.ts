@@ -1,21 +1,27 @@
 import { Router } from "express";
 import { ensureAuthenticateDeliveryman } from "../../../middlewares/ensure-authenticate-deliveryman";
+import { AuthenticateDeliverymanController } from "./authenticate-deliveryman-controller";
 import { CreateDeliverymanController } from "./create-deliveryman-controller";
 import { FindAllDeliveriesDeliverymanController } from "./find-all-deliveries-deliveryman-controller";
 
-const routes = Router();
+const routesDeliveryman = Router();
 
 const createDeliverymanController = new CreateDeliverymanController();
-
+const authenticateDeliveryController = new AuthenticateDeliverymanController();
 const findAllDeliveriesDeliverymanController =
   new FindAllDeliveriesDeliverymanController();
 
-routes.post("/deliveryman", createDeliverymanController.handle);
+routesDeliveryman.post(
+  "/deliveryman/authenticate",
+  authenticateDeliveryController.handle
+);
 
-routes.get(
+routesDeliveryman.post("/deliveryman", createDeliverymanController.handle);
+
+routesDeliveryman.get(
   "/deliveryman/deliveries",
   ensureAuthenticateDeliveryman,
   findAllDeliveriesDeliverymanController.handle
 );
 
-export { routes };
+export { routesDeliveryman };
