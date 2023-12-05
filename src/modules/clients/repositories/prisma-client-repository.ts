@@ -16,7 +16,7 @@ export class PrismaClientRepository implements ClientRepository {
     return clientExist;
   }
 
-  async create(data: Prisma.ClientCreateInput) {
+  async createClient(data: Prisma.ClientCreateInput) {
     const client = await prisma.client.create({
       data,
     });
@@ -24,7 +24,7 @@ export class PrismaClientRepository implements ClientRepository {
     return client;
   }
 
-  async findMany(idClient: string) {
+  async findManyByClient(idClient: string): Promise<any> {
     const deliveries = await prisma.client.findMany({
       where: {
         id: idClient,

@@ -8,7 +8,7 @@ interface CreateDeliverymanUseCaseRequest {
 }
 
 interface CreateDeliverymanUseCaseResponse {
-  client: Deliveryman;
+  deliveryman: Deliveryman;
 }
 
 export class CreateDeliverymanUseCase {
@@ -28,11 +28,11 @@ export class CreateDeliverymanUseCase {
 
     const hashPassword = await hash(password, 10);
 
-    const client = await this.deliverymanRepository.createDeliveveryman({
+    const deliveryman = await this.deliverymanRepository.createDeliveveryman({
       username,
       password: hashPassword,
     });
 
-    return { client };
+    return { deliveryman };
   }
 }

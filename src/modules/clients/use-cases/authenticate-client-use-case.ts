@@ -30,7 +30,7 @@ export class AuthenticateClientUseCase {
       throw new Error("Username or password incorrect.");
     }
 
-    const token = sign({ username }, "82a10c5f49bbc7f604d4f413666edeff", {
+    const token = sign({ username }, process.env.JWT_SECRET_CLIENT, {
       subject: client.id,
       expiresIn: "1d",
     });

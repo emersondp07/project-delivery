@@ -1,5 +1,5 @@
+import { ensureAuthenticateDeliveryman } from "@/middlewares/ensure-authenticate-deliveryman";
 import { Router } from "express";
-import { ensureAuthenticateDeliveryman } from "../../../middlewares/ensure-authenticate-deliveryman";
 import { AuthenticateDeliverymanController } from "./authenticate-deliveryman-controller";
 import { CreateDeliverymanController } from "./create-deliveryman-controller";
 import { FindAllDeliveriesDeliverymanController } from "./find-all-deliveries-deliveryman-controller";

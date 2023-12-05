@@ -1,6 +1,6 @@
+import { ensureAuthenticateClient } from "@/middlewares/ensure-authenticate-client";
+import { ensureAuthenticateDeliveryman } from "@/middlewares/ensure-authenticate-deliveryman";
 import { Router } from "express";
-import { ensureAuthenticateClient } from "../../../middlewares/ensure-authenticate-client";
-import { ensureAuthenticateDeliveryman } from "../../../middlewares/ensure-authenticate-deliveryman";
 import { CreateDeliveryController } from "./create-delivery-controller";
 import { FindAllAvailableController } from "./find-all-available-controller";
 import { UpdateDeliveryController } from "./update-deliveryman-controller";

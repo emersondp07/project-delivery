@@ -4,7 +4,8 @@ export class FindAllDeliveriesDeliverymanUseCase {
   constructor(private deliverymanRepository: DeliverymanRepository) {}
 
   async execute(idDeliveryman: string) {
-    const deliveries = this.deliverymanRepository.findMany(idDeliveryman);
+    const deliveries =
+      this.deliverymanRepository.findManyByDeliverymanId(idDeliveryman);
 
     return deliveries;
   }

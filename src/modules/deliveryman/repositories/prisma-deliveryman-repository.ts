@@ -16,7 +16,7 @@ export class PrismaDeliverymanRepository implements DeliverymanRepository {
     return deliverymanExist;
   }
 
-  async findMany(idDeliveryman: string): Promise<any> {
+  async findManyByDeliverymanId(idDeliveryman: string): Promise<any> {
     const deliveries = await prisma.deliveryman.findMany({
       where: {
         id: idDeliveryman,

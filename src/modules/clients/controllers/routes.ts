@@ -1,5 +1,5 @@
+import { ensureAuthenticateClient } from "@/middlewares/ensure-authenticate-client";
 import { Router } from "express";
-import { ensureAuthenticateClient } from "../../../middlewares/ensure-authenticate-client";
 import { AuthenticateClientController } from "./authenticate-client-controller";
 import { CreateClientController } from "./create-client-controller";
 import { FindAllDeliveriesController } from "./find-all-deliveries-controller";
