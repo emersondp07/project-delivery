@@ -24,7 +24,7 @@ export class PrismaClientRepository implements ClientRepository {
     return client;
   }
 
-  async findManyByClient(idClient: string): Promise<any> {
+  async findManyByClient(idClient: string) {
     const deliveries = await prisma.client.findMany({
       where: {
         id: idClient,

@@ -6,7 +6,7 @@ import { CreateDeliverymanUseCase } from "./create-deliveryman-use-case";
 let deliverymanRepository: InMemoryDeliverymanRepository;
 let sut: CreateDeliverymanUseCase;
 
-describe("Register Use Case", () => {
+describe("Create Deliveryman Use Case", () => {
   beforeEach(() => {
     deliverymanRepository = new InMemoryDeliverymanRepository();
     sut = new CreateDeliverymanUseCase(deliverymanRepository);

@@ -22,6 +22,7 @@ export class PrismaDeliveriesRepository implements DeliveriesRepository {
 
     return client;
   }
+
   async create(itemName: string, idClient: string) {
     const delivery = await prisma.delivery.create({
       data: {
@@ -34,7 +35,7 @@ export class PrismaDeliveriesRepository implements DeliveriesRepository {
   }
 
   async update(idDelivery: string, idDeliveryman: string) {
-    const result = await prisma.delivery.update({
+    await prisma.delivery.update({
       where: {
         id: idDelivery,
       },
@@ -43,11 +44,11 @@ export class PrismaDeliveriesRepository implements DeliveriesRepository {
       },
     });
 
-    return result;
+    return { message: "Foi finalizado a entrega!" };
   }
 
   async updateMany(idDelivery: string, idDeliveryman: string) {
-    const result = await prisma.delivery.updateMany({
+    await prisma.delivery.updateMany({
       where: {
         id: idDelivery,
         id_deliveryman: idDeliveryman,
