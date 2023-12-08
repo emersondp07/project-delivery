@@ -10,7 +10,7 @@ export interface DeliverymanRepository {
   findByUsername(username: string): Promise<Deliveryman | null>;
   findManyByDeliverymanId(
     idDeliveryman: string
-  ): Promise<DeliverymanDeliveryResponse[]>;
+  ): Promise<DeliverymanDeliveryResponse>;
   createDeliveveryman(
     data: Prisma.DeliverymanCreateInput
   ): Promise<Deliveryman>;

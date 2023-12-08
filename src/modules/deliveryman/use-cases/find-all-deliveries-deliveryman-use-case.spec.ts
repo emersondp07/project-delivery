@@ -1,13 +1,19 @@
 import { beforeEach, describe, it } from "vitest";
+import { InMemoryClientsRepository } from "../../clients/repositories/in-memory-client-repository";
+import { InMemoryDeliveriesRepository } from "../../deliveries/repositories/in-memory-deliveries-repository";
 import { InMemoryDeliverymanRepository } from "../repositories/in-memory-deliveryman-repository";
 import { FindAllDeliveriesDeliverymanUseCase } from "./find-all-deliveries-deliveryman-use-case";
 
 let deliverymanRepository: InMemoryDeliverymanRepository;
+let deliveriesRepository: InMemoryDeliveriesRepository;
+let clientRepository: InMemoryClientsRepository;
 let sut: FindAllDeliveriesDeliverymanUseCase;
 
-describe("Search Gyms Use Case", () => {
+describe("Find All Deliveries Use Case", () => {
   beforeEach(async () => {
     deliverymanRepository = new InMemoryDeliverymanRepository();
+    deliveriesRepository = new InMemoryDeliveriesRepository();
+    clientRepository = new InMemoryClientsRepository();
     sut = new FindAllDeliveriesDeliverymanUseCase(deliverymanRepository);
   });
 
@@ -17,24 +23,19 @@ describe("Search Gyms Use Case", () => {
       password: "123456",
     });
 
-    // await gymsRepository.create({
-    //   title: "JavasScript Gym",
-    //   description: null,
-    //   phone: null,
-    //   latitude: -27.2892852,
-    //   longitude: -49.6401091,
-    // });
-    // await gymsRepository.create({
-    //   title: "TypeScript Gym",
-    //   description: null,
-    //   phone: null,
-    //   latitude: -27.2892852,
-    //   longitude: -49.6401091,
-    // });
-    // const { gyms } = await sut.execute({
-    //   query: "JavasScript Gym",
-    //   page: 1,
-    // });
+    const client = await clientRepository.createClient({
+      username: "Emerson Dantas",
+      password: "123456",
+    });
+
+    const delivery1 = await deliveriesRepository.create("pudim", client.id);
+    const delivery2 = await deliveriesRepository.create("arroz", client.id);
+
+    const d = await deliveriesRepository.update(delivery1.id, deliveryman.id);
+    const c = await deliveriesRepository.update(delivery2.id, deliveryman.id);
+
+    const deliveries = await sut.execute(deliveryman.id);
+
     // expect(gyms).toHaveLength(1);
     // expect(gyms).toEqual([
     //   expect.objectContaining({ title: "JavasScript Gym" }),

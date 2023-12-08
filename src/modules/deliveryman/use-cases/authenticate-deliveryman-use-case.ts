@@ -32,10 +32,14 @@ export class AuthenticateDeliverymanUseCase {
       throw new Error("Username or password incorrect.");
     }
 
-    const token = sign({ username }, process.env.JWT_SECRET_DELIVERYMAN, {
-      subject: deliveryman.id,
-      expiresIn: "1d",
-    });
+    const token = sign(
+      { username },
+      process.env.JWT_SECRET_DELIVERYMAN || "unit-test",
+      {
+        subject: deliveryman.id,
+        expiresIn: "1d",
+      }
+    );
 
     return { token };
   }
