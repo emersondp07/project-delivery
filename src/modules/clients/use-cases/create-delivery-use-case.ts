@@ -17,6 +17,10 @@ export class CreateDeliveryUseCase {
     itemName,
     idClient,
   }: CreateDeliveryUseCaseRequest): Promise<CreateDeliveryUseCaseResponse> {
+    if (!itemName) {
+      throw new Error("Campo do item está vazio!");
+    }
+
     const delivery = await this.clientRepository.createOneDelivery(
       itemName,
       idClient

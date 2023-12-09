@@ -24,7 +24,18 @@ export class PrismaClientRepository implements ClientRepository {
     return client;
   }
 
-  async findManyByClient(idClient: string) {
+  async findUnique(idClient: string) {
+    // rever
+    const client = await prisma.client.findUnique({
+      where: {
+        id: idClient,
+      },
+    });
+
+    return client;
+  }
+
+  async findManyByIdClient(idClient: string) {
     //rever
     const deliveries = await prisma.client.findMany({
       where: {
@@ -49,16 +60,5 @@ export class PrismaClientRepository implements ClientRepository {
     });
 
     return delivery;
-  }
-
-  async findUnique(idClient: string) {
-    // rever
-    const client = await prisma.client.findUnique({
-      where: {
-        id: idClient,
-      },
-    });
-
-    return client;
   }
 }

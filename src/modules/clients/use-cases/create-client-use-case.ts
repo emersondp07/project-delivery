@@ -12,6 +12,7 @@ interface CreateClientUseCaseResponse {
 
 export class CreateClientUseCase {
   constructor(private clientRepository: ClientRepository) {}
+
   async execute({
     username,
     password,
