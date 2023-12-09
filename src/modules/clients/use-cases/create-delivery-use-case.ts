@@ -1,5 +1,5 @@
 import { Delivery } from "@prisma/client";
-import { DeliveriesRepository } from "../repositories/deliveries-repository";
+import { ClientRepository } from "../repositories/client-repository";
 
 interface CreateDeliveryUseCaseRequest {
   itemName: string;
@@ -11,13 +11,16 @@ interface CreateDeliveryUseCaseResponse {
 }
 
 export class CreateDeliveryUseCase {
-  constructor(private deliveriesRepository: DeliveriesRepository) {}
+  constructor(private clientRepository: ClientRepository) {}
 
   async execute({
     itemName,
     idClient,
   }: CreateDeliveryUseCaseRequest): Promise<CreateDeliveryUseCaseResponse> {
-    const delivery = await this.deliveriesRepository.create(itemName, idClient);
+    const delivery = await this.clientRepository.createOneDelivery(
+      itemName,
+      idClient
+    );
 
     return { delivery };
   }

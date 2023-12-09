@@ -38,4 +38,42 @@ export class PrismaDeliverymanRepository implements DeliverymanRepository {
 
     return client;
   }
+
+  async findMany() {
+    const deliveries = await prisma.delivery.findMany({
+      where: {
+        end_at: null,
+        id_deliveryman: null,
+      },
+    });
+
+    return deliveries;
+  }
+
+  async updateInitialDelivery(idDelivery: string, idDeliveryman: string) {
+    await prisma.delivery.update({
+      where: {
+        id: idDelivery,
+      },
+      data: {
+        id_deliveryman: idDeliveryman,
+      },
+    });
+
+    return { message: "Entrega aceita!" };
+  }
+
+  async updateFinisheDelivery(idDelivery: string, idDeliveryman: string) {
+    await prisma.delivery.updateMany({
+      where: {
+        id: idDelivery,
+        id_deliveryman: idDeliveryman,
+      },
+      data: {
+        end_at: new Date(),
+      },
+    });
+
+    return { message: "Entrega finalizada!" };
+  }
 }

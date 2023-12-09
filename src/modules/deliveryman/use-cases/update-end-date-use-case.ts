@@ -1,4 +1,4 @@
-import { DeliveriesRepository } from "../repositories/deliveries-repository";
+import { DeliverymanRepository } from "../repositories/deliveryman-repository";
 
 interface UpdateEndDateCaseRequest {
   idDelivery: string;
@@ -6,10 +6,10 @@ interface UpdateEndDateCaseRequest {
 }
 
 export class UpdateEndDateUseCase {
-  constructor(private deliveriesRepository: DeliveriesRepository) {}
+  constructor(private deliverymanRepository: DeliverymanRepository) {}
 
   async execute({ idDelivery, idDeliveryman }: UpdateEndDateCaseRequest) {
-    const result = await this.deliveriesRepository.updateMany(
+    const result = await this.deliverymanRepository.updateFinisheDelivery(
       idDelivery,
       idDeliveryman
     );

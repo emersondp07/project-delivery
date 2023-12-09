@@ -1,14 +1,13 @@
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import { routesClient } from "./modules/clients/controllers/routes";
-import { routesDelivery } from "./modules/deliveries/controllers/routes";
 import { routesDeliveryman } from "./modules/deliveryman/controllers/routes";
 
 const app = express();
 
 app.use(express.json());
 
-app.use(routesDelivery);
+// app.use(routesDelivery);
 app.use(routesDeliveryman);
 app.use(routesClient);
 

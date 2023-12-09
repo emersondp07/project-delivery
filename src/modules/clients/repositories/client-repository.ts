@@ -10,4 +10,6 @@ export interface ClientRepository {
   findByUsername(username: string): Promise<Client | null>;
   createClient(data: Prisma.ClientCreateInput): Promise<Client>;
   findManyByClient(idClient: string): Promise<ClientDeliveryResponse[]>;
+  findUnique(idClient: string): Promise<Client | null>;
+  createOneDelivery(itemName: string, idClient: string): Promise<Delivery>;
 }
