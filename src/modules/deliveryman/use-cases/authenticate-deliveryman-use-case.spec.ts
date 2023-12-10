@@ -1,15 +1,18 @@
 import { hash } from "bcrypt";
 import { beforeEach, describe, expect, it } from "vitest";
+import { InMemoryClientsRepository } from "../../clients/repositories/in-memory-client-repository";
 import { InMemoryDeliverymanRepository } from "../repositories/in-memory-deliveryman-repository";
 import { AuthenticateDeliverymanUseCase } from "./authenticate-deliveryman-use-case";
 
+let clientRepository: InMemoryClientsRepository;
 let deliverymanRepository: InMemoryDeliverymanRepository;
 let sut: AuthenticateDeliverymanUseCase;
 
 // sistem under test
 describe("Authenticate Use Case", () => {
   beforeEach(() => {
-    deliverymanRepository = new InMemoryDeliverymanRepository();
+    clientRepository = new InMemoryClientsRepository();
+    deliverymanRepository = new InMemoryDeliverymanRepository(clientRepository);
     sut = new AuthenticateDeliverymanUseCase(deliverymanRepository);
   });
 

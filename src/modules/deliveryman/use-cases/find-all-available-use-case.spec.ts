@@ -1,17 +1,20 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryClientsRepository } from "../repositories/in-memory-client-repository";
-import { FindAllDeliveriesUseCase } from "./find-all-deliveries-use-case";
+import { InMemoryClientsRepository } from "../../clients/repositories/in-memory-client-repository";
+import { InMemoryDeliverymanRepository } from "../repositories/in-memory-deliveryman-repository";
+import { FindAllAvailableUseCase } from "./find-all-available-use-case";
 
 let clientRepository: InMemoryClientsRepository;
-let sut: FindAllDeliveriesUseCase;
+let deliverymanRepository: InMemoryDeliverymanRepository;
+let sut: FindAllAvailableUseCase;
 
-describe("Find All Deliveries Use Case", () => {
+describe("Find All Available Use Case", () => {
   beforeEach(async () => {
     clientRepository = new InMemoryClientsRepository();
-    sut = new FindAllDeliveriesUseCase(clientRepository);
+    deliverymanRepository = new InMemoryDeliverymanRepository(clientRepository);
+    sut = new FindAllAvailableUseCase(deliverymanRepository);
   });
 
-  it("should be able to fetch check-in history", async () => {
+  it("should be able to find all availabe deliveries", async () => {
     const client = await clientRepository.createClient({
       username: "John Doe",
       password: "123456",
@@ -30,7 +33,7 @@ describe("Find All Deliveries Use Case", () => {
       (idClient = client.id)
     );
 
-    const deliveries = await sut.execute(client.id);
+    const deliveries = await sut.execute();
 
     expect(deliveries).toHaveLength(2);
     expect(deliveries).toEqual([
