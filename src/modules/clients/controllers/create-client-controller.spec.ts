@@ -10,10 +10,11 @@ describe("Create Client (e2e)", () => {
   });
 
   afterAll(async () => {
+    // process.exit();
     server.close();
   });
 
-  it("should be able to create deliveryman", async () => {
+  it("should be able to create client", async () => {
     const response = await request(app).post("/client").send({
       username: "John J",
       password: "123456",
