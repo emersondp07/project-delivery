@@ -2,20 +2,20 @@ import { app } from "@/app";
 import request from "supertest";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
-describe("Create Client (e2e)", () => {
+describe("Create Deliveryman (e2e)", () => {
   let server: any;
 
   beforeAll(async () => {
-    server = app.listen();
+    server = await app.listen();
   });
 
   afterAll(async () => {
-    server.close();
+    await server.close();
   });
 
-  it("should be able to create client", async () => {
-    const response = await request(app).post("/client").send({
-      username: "John J",
+  it("should be able to create deliveryman", async () => {
+    const response = await request(app).post("/deliveryman").send({
+      username: "John Doe",
       password: "123456",
     });
 

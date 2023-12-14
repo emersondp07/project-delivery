@@ -3,7 +3,7 @@ import "express-async-errors";
 import { routesClient } from "./modules/clients/controllers/routes";
 import { routesDeliveryman } from "./modules/deliveryman/controllers/routes";
 
-export const app = express();
+const app = express();
 
 app.use(express.json());
 
@@ -24,3 +24,5 @@ app.use(
     });
   }
 );
+
+export { app };

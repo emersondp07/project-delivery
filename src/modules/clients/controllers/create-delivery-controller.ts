@@ -9,11 +9,11 @@ export class CreateDeliveryController {
 
     const { idClient } = request;
 
-    const delivery = await createDeliveryUseCase.execute({
+    await createDeliveryUseCase.execute({
       itemName,
       idClient,
     });
 
-    return response.json(delivery);
+    return response.sendStatus(201);
   }
 }
