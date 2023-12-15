@@ -14,6 +14,6 @@ export class UpdateDeliveryController {
       idDeliveryman,
     });
 
-    return response.json(delivery);
+    return response.sendStatus(204);
   }
 }

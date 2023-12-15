@@ -14,6 +14,6 @@ export class UpdateEndDateController {
       idDeliveryman,
     });
 
-    return response.json(delivery);
+    return response.sendStatus(204);
   }
 }
