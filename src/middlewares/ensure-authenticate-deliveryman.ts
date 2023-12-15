@@ -23,7 +23,7 @@ export async function ensureAuthenticateDeliveryman(
   try {
     const { sub } = verify(
       token,
-      process.env.JWT_SECRET_DELIVERYMAN
+      process.env.JWT_SECRET_DELIVERYMAN ?? "2"
     ) as PayloadRequest;
 
     request.idDeliveryman = sub;
