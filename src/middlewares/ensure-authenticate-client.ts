@@ -23,7 +23,9 @@ export async function ensureAuthenticateClient(
   try {
     const { sub } = verify(
       token,
-      process.env.JWT_SECRET_CLIENT ?? "1"
+      process.env.JWT_SECRET_CLIENT
+        ? process.env.JWT_SECRET_CLIENT
+        : "unit-test"
     ) as PayloadRequest;
 
     request.idClient = sub;

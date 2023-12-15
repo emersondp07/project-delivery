@@ -34,7 +34,7 @@ export class AuthenticateDeliverymanUseCase {
 
     const token = sign(
       { username },
-      process.env.JWT_SECRET_DELIVERYMAN || "unit-test",
+      process.env.JWT_SECRET_DELIVERYMAN || "unit-test2",
       {
         subject: deliveryman.id,
         expiresIn: "1d",
