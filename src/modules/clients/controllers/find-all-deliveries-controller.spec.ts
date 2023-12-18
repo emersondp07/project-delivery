@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { prisma } from "../../../prisma/prisma";
 import { createAndAuthenticateClient } from "../../../utils/test/create-authenticate-user";
 
-describe("Create Delivery (e2e)", () => {
+describe("Find All Delivery (e2e)", () => {
   let server: any;
 
   beforeAll(async () => {
@@ -15,7 +15,7 @@ describe("Create Delivery (e2e)", () => {
     server.close();
   });
 
-  it("should be able to create delivery", async () => {
+  it("should be able to find all deliveries", async () => {
     const { token } = await createAndAuthenticateClient();
 
     const client = await prisma.client.findFirstOrThrow();

@@ -2,7 +2,7 @@ import { app } from "@/app";
 import request from "supertest";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
-describe("Create Deliveryman (e2e)", () => {
+describe("Authenticate Deliveryman (e2e)", () => {
   let server: any;
 
   beforeAll(async () => {
@@ -13,7 +13,7 @@ describe("Create Deliveryman (e2e)", () => {
     await server.close();
   });
 
-  it("should be able to create client", async () => {
+  it("should be able to authenticate", async () => {
     await request(app).post("/client").send({
       username: "John Doe",
       password: "123456",

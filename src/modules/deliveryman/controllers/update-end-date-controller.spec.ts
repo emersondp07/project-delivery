@@ -5,7 +5,7 @@ import { prisma } from "../../../prisma/prisma";
 import { createAndAuthenticateDeliveryman } from "../../../utils/test/create-authenticate-deliveryman";
 import { createAndAuthenticateClient } from "../../../utils/test/create-authenticate-user";
 
-describe("Find All Available (e2e)", () => {
+describe("Update End of Delivery Check (e2e)", () => {
   let server: any;
 
   beforeAll(async () => {
@@ -16,7 +16,7 @@ describe("Find All Available (e2e)", () => {
     await server.close();
   });
 
-  it("should be able to find all available", async () => {
+  it("should be able to update end of delivery check", async () => {
     const { token } = await createAndAuthenticateDeliveryman();
 
     await createAndAuthenticateClient();
